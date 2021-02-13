@@ -1,7 +1,7 @@
 name: test
 on:
   issues:
-    types: ['labeled','opened']
+    types: ['opened']
   pull_request:
     types: ['labeled']
 jobs:
