@@ -6,15 +6,15 @@ jobs:
     steps:
     - name: add-new-issues-to-repository-based-project-column
       uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-      if: github.event_name == 'issues' && github.event.action == 'opened'
+      if: github.event_name == 'issues' && github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'bug')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_PROJECT_URL: https://github.com/Gamemap/Godot/projects/3
-        GITHUB_PROJECT_COLUMN_NAME: To Do
+        GITHUB_PROJECT_COLUMN_NAME: High priority
     - name: add-new-prs-to-repository-based-project-column
       uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-      if: github.event_name == 'pull_request' && github.event.action == 'opened'
+      if: github.event_name == 'issues' && github.event.action == 'opened' && contains(github.event.issue.labels.*.name, 'Closed')
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_PROJECT_URL: https://github.com/takanabe/github-actions-automate-projects/projects/1
-        GITHUB_PROJECT_COLUMN_NAME: To do
+        GITHUB_PROJECT_URL: https://github.com/Gamemap/Godot/projects/3
+        GITHUB_PROJECT_COLUMN_NAME: Closed
