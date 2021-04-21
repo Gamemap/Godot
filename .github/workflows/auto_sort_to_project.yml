@@ -1,5 +1,7 @@
 #name: Add a new GitHub Project card to the specified project column based on issue labels
-on: issues
+on:
+  issues:
+    types: ['opened']
 jobs:
   github-actions-automate-projects:
     runs-on: ubuntu-latest
